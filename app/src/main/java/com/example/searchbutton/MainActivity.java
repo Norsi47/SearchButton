@@ -1,7 +1,5 @@
 package com.example.searchbutton;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,9 +7,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     //adding name into string array
     String[] randomNames = {"Christopher", "Jenny", "Maria", "Steve", "Chirs", "ivana", "Michael",
-            "Craig", "Kelly", "Joseph", "Crhistene" };
+            "Craig", "Kelly", "Joseph", "Crhistene"};
 
 
     // Define array adapter for ListView
@@ -73,14 +72,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         //use searchmenu xml file name
-        getMenuInflater().inflate(R.menu.searchmenu,menu);
+        getMenuInflater().inflate(R.menu.searchmenu, menu);
 
         //this refers to the id used for search in searchmenu.xml
         MenuItem menuItem = menu.findItem(R.id.search_button);
 
+        //have this import " androidx.appcompat.widget.SearchView"
+        //this needs to match Appcompant what it extends to
+        //this fixed the crashes
         SearchView searchView = (SearchView) menuItem.getActionView();
         //this is hint for whenever the user clicks on the icon
-      
+
         //query listener to show what user presses
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
